@@ -1,0 +1,46 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) 启动",
+            "type": "cppdbg",
+            "request": "launch",
+              /*
+            "program"项是项目启动的路径，你可以自定义启动路径，这样避免cpp和exe在统一文件夹下显得臃肿
+            "program"项需要与tasks.json中的"args"下的""-o","后面的部分保持一致
+            ${workspaceFolder}表示VSCode打开的文件夹
+            ${fileDirname}表示当前文件的目录名
+            ${fileBasenameNoExtension}表示当前文件不带后缀的名字
+            */
+            "program": "${workspaceFolder}/bin/${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            // "externalConsole": true则为外部控制台
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "D:/Program Files/mingw64/bin/gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description":  "将反汇编风格设置为 Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+             /*
+            "preLaunchTask"项需要与tasks.json的label保持一致，这一点很重要
+            */
+            // "preLaunchTask": "C/C++: g++.exe 生成活动文件"
+        }
+
+    ]
+}
