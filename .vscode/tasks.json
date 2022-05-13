@@ -3,16 +3,10 @@
         {
             "type": "cppbuild",
             "label": "C/C++: g++.exe 生成活动文件",
-            "command": "D:\\Program Files\\mingw64\\bin\\g++.exe",
-            "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
-            ],
+            "command": "D:\\Program Files\\mingw64\\bin\\mingw32-make.exe",
+            "args": [],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${workspaceRoot}/build"
             },
             "problemMatcher": [
                 "$gcc"
@@ -21,7 +15,52 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "调试器生成的任务。"
+            "detail": "调试器生成的任务。",
+            "dependsOn": ["cmake_before_build"]
+        },{
+            "type": "cppbuild",
+            "label": "cmake_before_build",
+            "command": "D:\\Program Files\\cmake-3.16.0-win64-x64\\bin\\cmake.exe",
+            "args": [
+                "-G",
+                "\"MinGW Makefiles\"",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                ".."
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/build"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "调试器生成的任务。",
+            "dependsOn": ["makedir"]
+        },{
+            "label": "makedir",
+            "type": "shell",
+            "command": "mkdir",
+            "args": [
+                "build"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "dependsOn": ["cleandir"]
+        },{
+            "label": "cleandir",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-r",
+                "build"
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}"
+            }
         }
     ],
     "version": "2.0.0"
