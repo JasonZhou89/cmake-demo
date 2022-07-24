@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.0)
 
 #指定项目名称
 project(CmakeProjDemo)
+#编译debug版本，用于gdb调试
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 
 #指定可执行文件的输出路径位bin目录
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
